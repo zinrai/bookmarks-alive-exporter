@@ -8,7 +8,8 @@ The bookmarks-alive-exporter is a Prometheus exporter designed to monitor the av
 - Asynchronously checks the availability of each URL
 - Exports HTTP status codes as Prometheus metrics
 - Collects metrics on-demand (when /metrics endpoint is requested)
-- Configurable via command-line flags (database path, port number)
+- Configurable via command-line flags (database path, port number, user agent)
+- Customizable User-Agent string to bypass restrictions on some websites
 
 ## Installation
 
@@ -21,11 +22,8 @@ $ go build
 1. Start the exporter from the command line:
 
    ```bash
-   ./bookmarks-alive-exporter -db /path/to/your/bookmarks.db -port 8080
+   ./bookmarks-alive-exporter -db /path/to/your/bookmarks.db -port 8080 -user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
    ```
-
-   - `-db`: Path to the SQLite database file (default: "./bookmarks.db")
-   - `-port`: Port on which the exporter will listen (default: "8000")
 
 2. Add the following to your Prometheus configuration file (usually `prometheus.yml`):
 
